@@ -21,4 +21,10 @@ public class TestDTO {
                          .content( this.content)
                          .build();
     }
+
+    public TestDTO(TestEntity entity) {
+        this.id = entity.getId();
+        this.title = entity.getTitle();
+        this.content = entity.getContent();
+    }
 }

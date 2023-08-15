@@ -1,8 +1,11 @@
 package com.example.jpastudy01.test;
 
 import lombok.RequiredArgsConstructor;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -11,12 +14,16 @@ import org.springframework.web.bind.annotation.*;
 public class TestController {
     private final TestService testService;
 
-
     @PostMapping("create")
     public String create(@RequestBody TestDTO dto) {
         testService.create(dto);
         log.info("@@@ save ### => " + dto);
         return "save test";
+    }
+
+    @GetMapping("/list")
+    public List<TestDTO> list() {
+        return testService.list();
     }
 
     @GetMapping("/read")
@@ -38,4 +45,10 @@ public class TestController {
         return "delete test";
     }
 
+    @GetMapping("/test")
+    public List<TestDTO> test(String keyword) {
+        return testService.test(keyword);
+    }
 }
+
+
